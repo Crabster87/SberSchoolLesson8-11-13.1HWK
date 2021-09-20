@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="SpeedometerViewDefaultStyle">
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="SeekBarColor" parent="Widget.AppCompat.SeekBar">
+        <item name="colorAccent">@color/illuminate</item>
+    </style>
+
+</resources>

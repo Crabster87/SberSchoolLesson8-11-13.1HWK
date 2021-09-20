@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#000000</color>
+    <color name="purple_700">#000000</color>
+    <color name="teal_200">#B71C1C</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="illuminate">#ffb066</color>
+    <color name="dial">#77f577</color>
+<!--    <color name="dial">0xff98ffb0</color>
+    <color name="dial">0xff90a0ff</color>
+    <color name="dial">0xffff8899</color>
+    <color name="dial">0x40ffffff</color>
+    <color name="dial">0x20000000</color>  -->
+</resources>
