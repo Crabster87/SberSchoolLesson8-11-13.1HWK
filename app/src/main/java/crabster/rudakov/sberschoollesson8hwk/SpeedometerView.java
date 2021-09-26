@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
@@ -99,16 +100,20 @@ public class SpeedometerView extends View {
         canvas.drawCircle(0, 0, 1, higherZonePaint);  //подложка для шкалы
         higherZonePaint.setColor(0x20000000);
 
-        canvas.drawCircle(0, 0, 0.8f, higherZonePaint); //нижняя граница шкалы
+        canvas.drawCircle(0, 0, 0.8f, higherZonePaint); //верхняя граница шкалы
         higherZonePaint.setColor(color);
         higherZonePaint.setStyle(Paint.Style.STROKE);
         higherZonePaint.setStrokeWidth(0.005f);
 
-        canvas.drawCircle(0, 0, 0.6f, lowerZonePaint); //нижняя граница шкалы
-        lowerZonePaint.setColor(color);
-        lowerZonePaint.setStrokeWidth(0.005f);
-        lowerZonePaint.setStyle(Paint.Style.FILL_AND_STROKE);
+        RectF oval = new RectF();                                   //speed bar
+        oval.set(-0.6f, -0.6f, 0.6f, 0.6f);
+        canvas.drawArc(oval, 0, -180 - (float) 180 * (speed / (float) maxSpeed), true, lowerZonePaint);
         lowerZonePaint.setShader(new LinearGradient(-0.6f, 0.6f, 0.6f, 0.6f, Color.GREEN, Color.RED, Shader.TileMode.CLAMP));
+
+        Paint paint = new Paint();
+        canvas.drawCircle(0, 0, 0.5f, paint); //нижняя граница шкалы
+        paint.setStrokeWidth(0.005f);
+        paint.setStyle(Paint.Style.FILL_AND_STROKE);
     }
 
     /**
