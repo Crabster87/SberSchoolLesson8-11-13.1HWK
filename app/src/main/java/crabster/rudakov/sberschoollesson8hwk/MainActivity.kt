@@ -2,26 +2,24 @@ package crabster.rudakov.sberschoollesson8hwk
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.SeekBar
+import android.widget.ImageView
+import android.widget.TextView
+
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         val speedometerView = findViewById<SpeedometerView>(R.id.speedometer_view)
-        findViewById<SeekBar>(R.id.seekbar).setOnSeekBarChangeListener(object :
-            SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(p0: SeekBar?, speed: Int, p2: Boolean) {
-                speedometerView.setSpeed(speed)
-            }
+        speedometerView.moveSpeedometerView()
 
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {
-            }
+        val speedImageView = findViewById<ImageView>(R.id.speed_image_view)
+        speedometerView.expandSpeedImageView(speedImageView)
 
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-            }
-        })
+        val speedTextView = findViewById<TextView>(R.id.speed_text_view)
+        speedometerView.setTextColorSpeedTextView(speedTextView)
     }
 
 }

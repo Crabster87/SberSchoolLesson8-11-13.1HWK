@@ -1,5 +1,7 @@
 package crabster.rudakov.sberschoollesson8hwk;
 
+import android.animation.ArgbEvaluator;
+import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -12,6 +14,9 @@ import android.graphics.Shader;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.core.content.res.ResourcesCompat;
 
@@ -208,22 +213,50 @@ public class SpeedometerView extends View {
     }
 
     /**
-     * Устанаваливаем максимальную скорость
+     * Анимируем движение стрелки и индикационной дуги в зависимости от скорости
      */
-    public void setMaxSpeed(int maxSpeed) {
-        this.maxSpeed = maxSpeed;
-        if (speed > maxSpeed) {
-            speed = maxSpeed;
-        }
-        invalidate();
+    public void moveSpeedometerView() {
+        ValueAnimator animator = ValueAnimator.ofInt(0, maxSpeed);
+        animator.setDuration(11600);
+        animator.setInterpolator(new DecelerateInterpolator(1.1f));
+        animator.addUpdateListener(animation -> {
+            speed = (int) animator.getAnimatedValue();
+            invalidate();
+        });
+        animator.start();
     }
 
     /**
-     * Устанавливаем значение SeekBar'у
+     * Анимируем расширение картинки гоночной трассы в зависимости от скорости
      */
-    public void setSpeed(int speed) {    //задается значение
-        this.speed = Math.min(speed, maxSpeed);
-        invalidate();
+    public void expandSpeedImageView(ImageView view) {
+        ValueAnimator animator = ValueAnimator.ofFloat(0.0f, maxSpeed);
+        animator.setDuration(11600);
+        animator.addUpdateListener(animation -> {
+            Float scale = (Float) animator.getAnimatedValue();
+            view.setScaleX(1.0f * scale / maxSpeed);
+            view.setScaleY(1.0f * scale / maxSpeed);
+            invalidate();
+        });
+        animator.start();
+    }
+
+    /**
+     * Анимируем текстовую величину индикаци скорости, задавая цветовой градиент
+     * от зелёного до красного
+     */
+    public void setTextColorSpeedTextView(TextView view) {
+        int colorFrom = Color.GREEN;
+        int colorTo = Color.RED;
+        ValueAnimator animator = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom, colorTo);
+        animator.setDuration(11600);
+        animator.addUpdateListener(animation -> {
+            view.setText(speed + " " + text);
+            view.setTextSize(20.0f);
+            view.setTextColor((Integer) animation.getAnimatedValue());
+            invalidate();
+        });
+        animator.start();
     }
 
 }

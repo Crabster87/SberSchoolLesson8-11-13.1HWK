@@ -12,15 +12,25 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
         android:gravity="center"
         android:text="@string/race_theme"
         android:textColor="@color/colorAccent"
         android:textSize="20sp" />
 
+    <TextView
+        android:id="@+id/speed_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:textAlignment="center" />
+
     <crabster.rudakov.sberschoollesson8hwk.SpeedometerView
         android:id="@+id/speedometer_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="@string/speed_measure"
         app:color="@color/dial"
         app:fontName="digital-7 (mono italic).ttf"
@@ -29,17 +39,8 @@
         app:speed="0"
         app:textColor="@color/illuminate" />
 
-    <SeekBar
-        android:id="@+id/seekbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:max="320"
-        android:progressBackgroundTint="@color/illuminate"
-        android:theme="@style/SeekBarColor"
-        app:speed="0" />
-
     <ImageView
+        android:id="@+id/speed_image_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="10dp"
